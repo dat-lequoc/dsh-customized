@@ -1,0 +1,15 @@
+# Cordis patch layer for dsh-customized:
+# Inserts the dsh-customized plugin into the Harness runtime.
+#
+# Usage:
+#   1. On-demand via CLI argument:
+#      pnpm dsh web --patch /home/nightfury/dsh-plugins/dsh-customized/cordis.patch.yml
+#
+#   2. Persistent for all profiles in $DSH_HOME/cordis.patch.yml (typically ~/.dsh/cordis.patch.yml):
+#      - insert:
+#          - id: dsh-customized
+#            name: /home/nightfury/dsh-plugins/dsh-customized/lib/index.js
+#
+- insert:
+    - id: dsh-customized
+      name: ./lib/index.js
