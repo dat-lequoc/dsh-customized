@@ -12,17 +12,27 @@ Disables web token launch authentication and browser session cookie requirement:
 
 ---
 
-## One-Line Install
+## Installation
 
-Install into your DSH Web profile with one command:
+### Option 1: Direct One-Line Install (Recommended)
+
+Install directly from GitHub into your DSH Web profile:
 
 ```bash
-# From GitHub:
 dsh plugin --profile web add github:dat-lequoc/dsh-customized
+```
 
-# Or from local checkout:
+### Option 2: Clone & Local Development Install
+
+Clone the repository and link your local checkout so ongoing edits take effect immediately:
+
+```bash
+git clone https://github.com/dat-lequoc/dsh-customized.git
+cd dsh-customized
 dsh plugin --profile web add .
 ```
+
+---
 
 After installation, the plugin automatically mounts as a bundle in the Web profile — you can launch `dsh web` normally without needing extra flags.
 
