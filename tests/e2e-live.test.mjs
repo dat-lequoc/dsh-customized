@@ -8,7 +8,8 @@ import { describe, it } from 'node:test'
 import { fileURLToPath } from 'node:url'
 
 const PATCH_PATH = fileURLToPath(new URL('../cordis.patch.yml', import.meta.url))
-const HARNESS_CLI = '/home/nightfury/deepseek-harness/apps/cli/src/bin.ts'
+const HARNESS_DIR = process.env.HARNESS_DIR || fileURLToPath(new URL('../../../deepseek-harness', import.meta.url))
+const HARNESS_CLI = join(HARNESS_DIR, 'apps/cli/src/bin.ts')
 
 function getFreePort() {
   return new Promise((resolve, reject) => {
@@ -43,7 +44,7 @@ function startWebProcess(port, patchPath, dshHome) {
     args.push('--port', String(port), '--no-open')
 
     const child = spawn(process.execPath, args, {
-      cwd: '/home/nightfury/deepseek-harness',
+      cwd: HARNESS_DIR,
       env: {
         ...process.env,
         DSH_HOME: dshHome,

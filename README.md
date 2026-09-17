@@ -20,8 +20,8 @@ Install into your DSH Web profile with one command:
 # From GitHub:
 dsh plugin --profile web add github:dat-lequoc/dsh-customized
 
-# Or from your local directory:
-dsh plugin --profile web add /home/nightfury/dsh-plugins/dsh-customized
+# Or from local checkout:
+dsh plugin --profile web add .
 ```
 
 After installation, the plugin automatically mounts as a bundle in the Web profile — you can launch `dsh web` normally without needing extra flags.
@@ -50,11 +50,10 @@ The Cordis plugin declares an `inject: ['connection']` dependency to intercept t
 To boot DeepSeek Harness Web with authentication disabled for a single run without installing:
 
 ```bash
-# From deepseek-harness repository:
-pnpm dsh web --patch /home/nightfury/dsh-plugins/dsh-customized/cordis.patch.yml
+dsh web --patch path/to/dsh-customized/cordis.patch.yml
 ```
 
-*(Note: In Commander CLI, launcher options like `--patch` must come before web app specific flags like `--port` or `--no-open`, e.g., `pnpm dsh web --patch <path> --port 3080 --no-open`).*
+*(Note: In Commander CLI, launcher options like `--patch` must come before web app specific flags like `--port` or `--no-open`, e.g., `dsh web --patch <path> --port 3080 --no-open`).*
 
 ### 2. Persistent Machine Configuration (`$DSH_HOME/cordis.patch.yml`)
 
@@ -63,7 +62,7 @@ Add the `- insert:` directive to your user patch layer in `~/.dsh/cordis.patch.y
 ```yaml
 - insert:
     - id: dsh-customized
-      name: /home/nightfury/dsh-plugins/dsh-customized/lib/index.js
+      name: path/to/dsh-customized/lib/index.js
 ```
 
 ---
@@ -73,7 +72,6 @@ Add the `- insert:` directive to your user patch layer in `~/.dsh/cordis.patch.y
 ### Running the Test Suite
 
 ```bash
-cd /home/nightfury/dsh-plugins/dsh-customized
 pnpm test
 ```
 
@@ -81,7 +79,7 @@ The test suite includes:
 - Metadata and export verification.
 - `cleanUrl` helper unit tests (query token removal, fragment stripping, port preservation, URL validation fallback).
 - Mock context interception and disposal reversibility tests.
-- Full end-to-end integration tests spawning the real `dsh web` CLI process and asserting:
+- Full end-to-end integration tests asserting:
   1. Startup stdout shows `dsh web: http://127.0.0.1:<port>/` without `?token=`.
   2. `curl -I http://127.0.0.1:<port>/` returns `200 OK` on a fresh client with no cookies.
   3. POST to `/api/settings/describe` with valid JSON payload and NO cookie header returns `200 OK` and valid JSON data.
