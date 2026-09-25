@@ -1,7 +1,7 @@
 {
   "name": "dsh-better-retry",
   "version": "0.2.0",
-  "description": "指数退避与可确认错误分类的 DeepSeek Harness 重试插件",
+  "description": "Error classification and automatic retry management plugin for DeepSeek Harness",
   "license": "MIT",
   "type": "module",
   "main": "lib/index.mjs",
@@ -25,10 +25,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leolee9086/dsh-better-retry.git"
+    "url": "git+https://github.com/dat-lequoc/dsh-customized.git"
   },
   "bugs": {
-    "url": "https://github.com/leolee9086/dsh-better-retry/issues"
+    "url": "https://github.com/dat-lequoc/dsh-customized/issues"
   },
   "publishConfig": {
     "access": "public"

@@ -70,3 +70,13 @@ test('management keeps disabled patterns visible with enable and delete actions'
   assert.ok(html.includes('启用'))
   assert.ok(html.includes('删除'))
 })
+
+test('english UI flow renders correct labels and actions', async () => {
+  const tEn = key => dictionaries.en[key]
+  const html = renderToStaticMarkup(h(RuleList, { t: tEn, busy: false, mutate: () => {}, rules: [{
+    id: 'r1', builtin: false, enabled: true, pattern: 'overloaded', mode: 'exact', code: 'PI_AI_ERROR', provider: '*',
+  }] }))
+  assert.ok(html.includes('Enabled'))
+  assert.ok(html.includes('Disable'))
+  assert.ok(html.includes('Delete'))
+})

@@ -5,11 +5,11 @@ import type {} from '@deepseek-ai/dsh-client-ui-slots'
 
 export const inject = ['slots', 'locale', 'remote']
 const NS = 'dsh-better-retry'
-const zh = {
-  add: '纳入自动重试', added: '已纳入自动重试', saving: '正在保存…', error: '保存失败',
-}
 const en = {
   add: 'Enable automatic retry', added: 'Automatic retry enabled', saving: 'Saving…', error: 'Save failed',
+}
+const zh = {
+  add: '纳入自动重试', added: '已纳入自动重试', saving: '正在保存…', error: '保存失败',
 }
 
 /** Small action added to the terminal turn-error row. */
