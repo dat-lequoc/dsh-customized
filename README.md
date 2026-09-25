@@ -10,6 +10,12 @@ Disables web token launch authentication and browser session cookie requirement:
 - **Direct Web UI serving:** Visiting `http://127.0.0.1:3080/` serves `index.html` directly with HTTP `200 OK` (no `303` redirect or `401 Unauthorized`).
 - **Unauthenticated RPC / API access:** All `/api` RPC requests are accepted without requiring browser session cookies (no `401 Unauthorized`), while maintaining DNS rebinding / host fence protections (untrusted hosts still receive `403 Forbidden`).
 
+### 2. `better-retry` (`better-retry/`)
+Error classification and automatic retry rule manager for DeepSeek Harness Web:
+- Reclassifies transient `PI_AI_ERROR` failures into `RATE_LIMIT` so DSH's native `@deepseek-ai/dsh-llm-retry` executor performs bounded exponential backoff and jitter.
+- Provides one-click retry enablement on Web chat error cards and a dedicated management section under Settings.
+- See [`better-retry/README.md`](./better-retry/README.md) for detailed documentation.
+
 ---
 
 ## Installation
