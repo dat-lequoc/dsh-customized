@@ -1,0 +1,67 @@
+{
+  "name": "dsh-better-retry",
+  "version": "0.2.0",
+  "description": "指数退避与可确认错误分类的 DeepSeek Harness 重试插件",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.mjs",
+  "exports": {
+    ".": "./lib/index.mjs",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "retry",
+    "exponential-backoff"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leolee9086/dsh-better-retry.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leolee9086/dsh-better-retry/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-chat",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "build": "pnpm run bundle",
+    "bundle": "tsdown",
+    "check": "node --test test/*.test.js && node --check src/index.js && node --check src/client.js && node --check src/classifier.js"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.2",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "react-dom": "18.3.1",
+    "react-test-renderer": "18.3.1",
+    "tsdown": "^0.22.2"
+  }
+}
